@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from app.api.v1.routes import health, resume
+from app.api.v1.routes import health, resume, match
+
 
 app = FastAPI(
     title="Smart Resume Screener API",
@@ -8,3 +9,5 @@ app = FastAPI(
 
 app.include_router(health.router, prefix="/api/v1")
 app.include_router(resume.router, prefix="/api/v1")
+app.include_router(match.router, prefix="/api/v1")
+
