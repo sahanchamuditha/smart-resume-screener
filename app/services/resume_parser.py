@@ -1,4 +1,5 @@
 from app.services.nlp_service import extract_skills, extract_experience_sentences
+from app.services.resume_storage import save_resume
 from io import BytesIO
 import pdfplumber
 from docx import Document
@@ -30,9 +31,10 @@ def parse_resume(file_bytes: bytes, filename: str):
     skills = extract_skills(text)
     experience = extract_experience_sentences(text)
 
+    resume_id = save_resume(filename, text, skills)
+
     return {
-        "filename": filename,
+        "resume_id": resume_id,
         "skills": skills,
-        "experience_sentences": experience[:5],  # limit output
-        "text_length": len(text)
+        "experience_sentences": experience[:5]
     }
