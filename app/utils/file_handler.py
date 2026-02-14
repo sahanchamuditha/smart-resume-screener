@@ -1,4 +1,3 @@
 def validate_file_type(filename: str):
-    allowed = ["pdf", "docx"]
-    ext = filename.split(".")[-1].lower()
-    return ext in allowed
+    allowed_extensions = ("pdf", "docx")
+    return filename.lower().endswith(allowed_extensions)
