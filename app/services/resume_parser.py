@@ -1,6 +1,7 @@
+from app.services.nlp_service import extract_skills, extract_experience_sentences
+from io import BytesIO
 import pdfplumber
 from docx import Document
-from io import BytesIO
 
 
 def extract_text_from_pdf(file_bytes: bytes) -> str:
@@ -15,8 +16,7 @@ def extract_text_from_pdf(file_bytes: bytes) -> str:
 
 def extract_text_from_docx(file_bytes: bytes) -> str:
     document = Document(BytesIO(file_bytes))
-    text = "\n".join([para.text for para in document.paragraphs])
-    return text.strip()
+    return "\n".join(p.text for p in document.paragraphs).strip()
 
 
 def parse_resume(file_bytes: bytes, filename: str):
@@ -27,8 +27,12 @@ def parse_resume(file_bytes: bytes, filename: str):
     else:
         raise ValueError("Unsupported file type")
 
+    skills = extract_skills(text)
+    experience = extract_experience_sentences(text)
+
     return {
         "filename": filename,
-        "text_length": len(text),
-        "extracted_text": text[:1000]  # preview only
+        "skills": skills,
+        "experience_sentences": experience[:5],  # limit output
+        "text_length": len(text)
     }
