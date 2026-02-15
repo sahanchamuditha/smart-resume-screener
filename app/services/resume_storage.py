@@ -13,3 +13,9 @@ def save_resume(filename: str, text: str, skills: list[str]):
     db.refresh(resume)
     db.close()
     return resume.id
+
+def get_all_resumes():
+    db = SessionLocal()
+    resumes = db.query(ResumeDB).all()
+    db.close()
+    return resumes
