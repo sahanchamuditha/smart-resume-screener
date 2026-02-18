@@ -14,8 +14,8 @@ cryptography==46.0.5
 cymem==2.0.13
 ecdsa==0.19.1
 en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl#sha256=1932429db727d4bff3deed6b34cfc05df17794f4a52eeb26cf8928f7c1a0fb85
-fastapi==0.129.0
-fastapi-security==0.5.0
+fastapi
+fastapi-security
 filelock==3.24.0
 fsspec==2026.2.0
 h11==0.16.0
@@ -45,7 +45,7 @@ preshed==3.0.12
 psycopg2-binary==2.9.11
 pyasn1==0.6.2
 pycparser==3.0
-pydantic==2.12.5
+pydantic
 pydantic_core==2.41.5
 Pygments==2.19.2
 pypdfium2==5.4.0
